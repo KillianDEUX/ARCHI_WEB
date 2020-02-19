@@ -7,6 +7,9 @@ APIs :
   - Afficher les informations d'un film (synopsys, dates, acteurs, ...)
   - Mettre en lien la cratique correspondante
   
+ Explication du projet : 
+    Le but de ce module est de mettre en place un site WEB responsive utilisant des APIs. Nous avons choisi d'utiliser les API du site Movie DataBase et du NewYork Times. Ces sites permettent respectivement de collecter des informations sur tous les films existants et les critiques associés à certains de ces films.
+  
   Fonctionnement des APIs :
     - https://developers.themoviedb.org/3/movies/get-movie-details (JSON GET)
     
