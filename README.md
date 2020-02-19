@@ -12,7 +12,6 @@ APIs :
   
   Fonctionnement des APIs :
     - https://developers.themoviedb.org/3/movies/get-movie-details (JSON GET)
-    
     - https://developer.nytimes.com/docs/movie-https://developer.nytimes.com/docs/movie-reviews-api/1/overviewreviews-api/1/overview (JSON GET)
     - Plus d'informations ici : https://developer.nytimes.com/docs/movie-reviews-api/1/types/Critic
     
