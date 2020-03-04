@@ -25,3 +25,7 @@ Lien du Github :
 URL : http://info.univ-lemans.fr/~s170932
 
 https://api.themoviedb.org/3/search/movie?api_key=f49536f8093a09d282d1034f36831fc6&query=Star+Wars
+
+
+A VOIR
+https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
