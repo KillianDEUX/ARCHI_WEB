@@ -9,6 +9,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <!-- ICON LOGO -->
+  
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  
   <title>DEUGEROR</title>
 
   <!-- Bootstrap core CSS -->
@@ -43,13 +47,13 @@
           <h1 class="mb-5" id="test">Trouver le film de votre choix et les critiques du New York Times associées</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
+          <form onSubmit="doFormStuff(); return false;">
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" class="form-control form-control-lg" placeholder="Entrer un film..." id="titre" name="titre">
+                <input type="text" class="form-control form-control-lg" placeholder="Entrer un titre de film..." id="titre" name="titre">
               </div>
               <div class="col-12 col-md-3">
-                <button onClick="chargement()" type="button" class="btn btn-block btn-lg btn-primary" value="OK">Rechercher</button>
+                <button onClick="chargement()" type="button" class="btn btn-block btn-lg btn-primary" value="OK" id="OK">Rechercher !</button>
               </div>
             </div>
           </form>
@@ -60,7 +64,9 @@
 
   <section id='films_disponibles'>
     <div id='boutons_propositions'></div>
+    <div id='listederoulante'></div>
   </section>
+                    <!-- TITRE CHARGE! -->
   <h1 id='titreFilmOriginel'></h1>
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
@@ -106,22 +112,25 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" id='img_premier_acteur' >  <!--src="img/testimonials-1.jpg" alt=""-->
-              <h5 id='nom_premier_acteur'></h5>
+              <img class="img-fluid rounded-circle mb-3" id='img_premier_acteur'> 
+              <br>
+              <a id='nom_premier_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_premier_acteur'></p>
             </div>
           </div>
           <div class="col-lg-4">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" id='img_deuxieme_acteur' >  <!--src="img/testimonials-1.jpg" alt=""-->
-              <h5 id='nom_deuxieme_acteur'></h5>
+              <img class="img-fluid rounded-circle mb-3" id='img_deuxieme_acteur'> 
+              <br>
+              <a id='nom_deuxieme_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_deuxieme_acteur'></p>
             </div>
           </div>
           <div class="col-lg-4">
            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
               <img class="img-fluid rounded-circle mb-3" id='img_troisieme_acteur' >  <!--src="img/testimonials-1.jpg" alt=""-->
-              <h5 id='nom_troisieme_acteur'></h5>
+              <br>
+              <a id='nom_troisieme_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_troisieme_acteur'></p>
             </div>
           </div>
@@ -139,9 +148,9 @@
       </div>
       <div class="row no-gutters">
         <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Easy to Use &amp; Customize</h2>
-          <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text" id="synopsis">
+          <h2>Critiques de NYT</h2>
+          <p id="resumeFilm"></p>
         </div>
       </div>
     </div>
@@ -207,7 +216,7 @@
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
           <ul class="list-inline mb-2">
-            <li class="list-inline-item">
+            <!--<li class="list-inline-item">
               <a href="#">About</a>
             </li>
             <li class="list-inline-item">&sdot;</li>
@@ -221,9 +230,9 @@
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
               <a href="#">Privacy Policy</a>
-            </li>
+            </li> -->
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; DEUGEROR - Projet universitaire. Reproduction interdite.</p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
@@ -254,5 +263,14 @@
 	<!--<p> test </p>-->
 
 </body>
+<script>
+  var t=document.getElementById("titre");
 
+  t.onkeypress=function(e){
+      if(e.keyCode==13){
+          document.getElementById("OK").click();
+      }
+  }
+
+</script>
 </html>
