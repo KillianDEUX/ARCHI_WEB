@@ -22,7 +22,7 @@ function chargement() {
 
 
 		  if (request.status >= 200 && request.status < 400) {
-             // TITRE CHARGE
+        // TITRE CHARGE
         const premier_film = data.results[0];
         const h1 = document.getElementById('titreFilmOriginel');
         h1.innerHTML = "";
@@ -53,13 +53,19 @@ function chargement() {
         const lstderoule = document.getElementById('listederoulante');
         lstderoule.innerHTML = html;
 
-        //traitement de l'image
-        image = premier_film.backdrop_path;
-        balise_image = document.getElementById('Affichage_FanArt');
-        balise_image.setAttribute('style', "background-image: url('https://image.tmdb.org/t/p/original"+ image+"')" );
-
-        charger_acteur(premier_film);
-
+      //traitement de l'image
+          image = premier_film.backdrop_path;
+          if (image==null){
+            balise_image = document.getElementById('Affichage_FanArt');
+            balise_image.setAttribute('style', "background-image: url('img/bg-masthead.gif')" );
+            charger_acteur(premier_film);
+          }else{
+            balise_image = document.getElementById('Affichage_FanArt');
+            balise_image.setAttribute('style', "background-image: url('https://image.tmdb.org/t/p/original"+ image+"')" );
+            charger_acteur(premier_film);
+            //Traitement de la deuxième API
+            nytimes_critics(premier_film);
+          }
       } else {
         const errorMessage = document.createElement('marquee');
         errorMessage.textContent = 'Erreur URL API';
@@ -69,6 +75,7 @@ function chargement() {
 	}
 	request.send()
 	//alert("Envoie requête");
+
 }
 
 
@@ -89,7 +96,7 @@ function charger_acteur(premier_film){
           nom_premier_acteur.innerHTML = "";
           nom_premier_acteur.textContent = premier_acteur.name;
           nom_premier_acteur.setAttribute("href", "http://www.google.com/search?q="+premier_acteur.name);
-          
+          nom_premier_acteur.setAttribute("onclick", "window.open(this.href);return false");
 
           const role_premier_acteur = document.getElementById('role_premier_acteur');
           role_premier_acteur.innerHTML = "";
@@ -104,6 +111,7 @@ function charger_acteur(premier_film){
             nom_deuxieme_acteur.innerHTML = "";
             nom_deuxieme_acteur.textContent = deuxieme_acteur.name;
             nom_deuxieme_acteur.setAttribute("href", "http://www.google.com/search?q="+deuxieme_acteur.name)
+            nom_deuxieme_acteur.setAttribute("onclick", "window.open(this.href);return false");
 
             const role_deuxieme_acteur = document.getElementById('role_deuxieme_acteur');
             role_deuxieme_acteur.innerHTML = "";
@@ -116,7 +124,8 @@ function charger_acteur(premier_film){
               const nom_troisieme_acteur = document.getElementById('nom_troisieme_acteur');
               nom_troisieme_acteur.innerHTML = "";
               nom_troisieme_acteur.textContent = troisieme_acteur.name;
-              nom_troisieme_acteur.setAttribute("href", "http://www.google.com/search?q="+troisieme_acteur.name)
+              nom_troisieme_acteur.setAttribute("href", "http://www.google.com/search?q="+troisieme_acteur.name);
+              nom_troisieme_acteur.setAttribute("onclick", "window.open(this.href);return false");
 
               const role_troisieme_acteur = document.getElementById('role_troisieme_acteur');
               role_troisieme_acteur.innerHTML = "";
@@ -187,9 +196,9 @@ function chargement_lien(titre) {
           var j, html;
           html = "Voici une liste de résultats avec votre recherche :";
           html += "<form id=\"listes\" name=\"listes\">";
-          html += "<span id=\"numero\"></span> <select name=\"liste\"><option value=\"\">Choisir...</option>";
+          html += "<span id=\"numero\"></span> <select name=\"liste\"><option value=\"\">Choisir ...</option>";
           for (j=0; j<data.results.length; j++){
-            html += "<option value=\""+data.results[j].title+"\" onClick= chargement_lien(value)>"+data.results[j].title+"</option>"; // chargement_lien(\""+data.results[j].title+"\")
+            html += "<option value=\""+data.results[j].title+"\" onClick= chargement_lien(value)>"+data.results[j].title+"</option>";
           }
           html += "</select><br>";
           html +="</form>";
@@ -207,10 +216,11 @@ function chargement_lien(titre) {
             balise_image = document.getElementById('Affichage_FanArt');
             balise_image.setAttribute('style', "background-image: url('https://image.tmdb.org/t/p/original"+ image+"')" );
             charger_acteur(premier_film);
+            //Traitement de la deuxième API
+            nytimes_critics(premier_film);
           }
 
         } 
-        
         else{
           const errorMessage = document.createElement('marquee');
           errorMessage.textContent = 'Erreur URL API';
@@ -218,6 +228,34 @@ function chargement_lien(titre) {
         }
 		//alert("fin traitement");
 	}
-	request.send()
+	request.send();
 	//alert("Envoie requête");
+}
+
+
+function nytimes_critics(premier_film){
+  var request_critics= new XMLHttpRequest();
+  var api_critics= "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query="+premier_film.original_title+"&api-key=08Sa5xGQhH3dH1ur38BAWl2rB6yDAJyF";
+  request_critics.open('GET', api_critics, true);
+	request_critics.onload = function(){
+	  var data = JSON.parse(this.response);
+    const extrait_critique = document.getElementById('critiqueFilm');
+    const lien_critique = document.getElementById('lien_vers_critique');
+    for(j=0; j<data.num_results; j++){
+      if(data.results[j].display_title == premier_film.original_title){
+        extrait_critique.innerHTML = "";
+        extrait_critique.textContent = data.results[j].summary_short;
+        lien_critique.innerHTML = "";
+        lien_critique.textContent = "Lien vers la critique complète";
+        lien_critique.setAttribute("href",data.results[j].link.url );
+        lien_critique.setAttribute("onclick", "window.open(this.href);return false");
+      }
+      else if(j == data.num_results){
+        extrait_critique.innerHTML = "";
+        extrait_critique.textContent = "Aucunes critiques du NEW_YORK Times";
+
+      }
+    }
+  }
+  request_critics.send();
 }
