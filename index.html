@@ -30,14 +30,6 @@
 
 <body>
 
-  <!-- Navigation
-  <nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"></a>
-      <a class="btn btn-primary" href="#"></a>
-    </div>
-  </nav>-->
-
   <!-- Masthead -->
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
@@ -55,21 +47,19 @@
               <div class="col-12 col-md-3">
                 <button onClick="chargement()" type="button" class="btn btn-block btn-lg btn-primary" value="OK" id="OK">Rechercher !</button>
               </div>
+               
             </div>
+            <div class="col-12 col-md-9 mb-2 mb-md-0" id='listederoulante'>
+          <h1 class="mb-5" id="test"></h1>
+        </div>
           </form>
         </div>
       </div>
     </div>
   </header>
 
-  <section  >
-    <h1 id='films_disponibles'></h1>
-    <div id='boutons_propositions'></div>
-    <div id='listederoulante'></div>
-  </section>
-
-                    <!-- TITRE CHARGE! -->
-  <h1 id='titreFilmOriginel'></h1>
+                    <!-- TITRE CHARGE! + PLACÉ VERS CENTRE -->
+  <h1 class="features-icons text-center" id='titreFilmOriginel'></h1>
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
@@ -78,13 +68,10 @@
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
              <a href="#Les acteurs principaux du film">
             <div class="features-icons-icon d-flex">
-             
               <i class="icon-screen-desktop m-auto text-primary"></i>
-              
             </div>
             </a>
             <h3>Les acteurs principaux du film</h3>
-            <!-- <p class="lead mb-0"></p>-->
           </div>
         </div>
         <div class="col-lg-4" id='root'>
@@ -95,7 +82,6 @@
               </div>
              </a>
             <h3>Résumé du film</h3>
-             <!-- <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>-->
           </div>
         </div>
         <div class="col-lg-4">
@@ -106,7 +92,6 @@
               </div>
             </a>
             <h3>Critiques du NYT</h3>
-            <!-- <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>-->
           </div>
         </div>
       </div>
@@ -122,7 +107,7 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" id='img_premier_acteur'> 
+              <img class="img-fluid rounded-circle mb-3" id='img_premier_acteur' src="img/testimonials-1.jpg" alt=""> 
               <br>
               <a id='nom_premier_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_premier_acteur'></p>
@@ -130,7 +115,7 @@
           </div>
           <div class="col-lg-4">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" id='img_deuxieme_acteur'> 
+              <img class="img-fluid rounded-circle mb-3" id='img_deuxieme_acteur' src="img/testimonials-2.jpg" alt=""> 
               <br>
               <a id='nom_deuxieme_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_deuxieme_acteur'></p>
@@ -138,7 +123,7 @@
           </div>
           <div class="col-lg-4">
            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" id='img_troisieme_acteur' >  <!--src="img/testimonials-1.jpg" alt=""-->
+              <img class="img-fluid rounded-circle mb-3" id='img_troisieme_acteur' src="img/testimonials-3.jpg" alt="">  
               <br>
               <a id='nom_troisieme_acteur'></a>
               <p class="font-weight-light mb-0" id = 'role_troisieme_acteur'></p>
@@ -149,11 +134,10 @@
     </section>
 
       <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" id= "Affichage_FanArt" ></div>
-        <!-- <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>-->
+        <div class="col-lg-6 text-white showcase-img" id= "Affichage_FanArt" style="background-image: url('img/fanart.jpg');"></div>
         <div class="col-lg-6 my-auto showcase-text" id="synopsis">
-          <h1 id="titreFilm"></h1>
-          <p id="resumeFilm"></p>
+          <h1 id="titreFilm">Titre du Film</h1>
+          <p id="resumeFilm">Résumé du Film</p>
         </div>
       </div>
       <div class="row no-gutters">
@@ -167,101 +151,18 @@
     </div>
   </section>
 
-  <!-- Testimonials
-  <section class="testimonials text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">What people are saying...</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-            <h5>Margaret E.</h5>
-            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-            <h5>Fred S.</h5>
-            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-            <h5>Sarah W.</h5>
-            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Call to Action
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Entrer un film...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>-->
-
   <!-- Footer -->
   <footer class="footer bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-          <ul class="list-inline mb-2">
-            <!--<li class="list-inline-item">
-              <a href="#">About</a>
-            </li>
-            <li class="list-inline-item">&sdot;</li>
-            <li class="list-inline-item">
-              <a href="#">Contact</a>
-            </li>
-            <li class="list-inline-item">&sdot;</li>
-            <li class="list-inline-item">
-              <a href="#">Terms of Use</a>
-            </li>
-            <li class="list-inline-item">&sdot;</li>
-            <li class="list-inline-item">
-              <a href="#">Privacy Policy</a>
-            </li> -->
-          </ul>
           <p class="text-muted small mb-4 mb-lg-0">&copy; DEUGEROR - Projet universitaire. Reproduction interdite.</p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
             <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
+              <img  class="fab fa-10x fa-fw" src ="img/LOGO.png"></img>
+            </li> 
           </ul>
         </div>
       </div>

@@ -39,19 +39,20 @@ function chargement() {
         balise_resume.textContent = premier_film.overview;         
 
         data.results.shift();
-        
-			  var j, html;
-        html = "Voici une liste de résultats supplémentaires avec votre recherche :";
-        html += "<form id=\"listes\" name=\"listes\">";
-        html += "<span id=\"numero\"></span> <select name=\"liste\" onChange = chargement_lien(this.value) ><option value=\"\">Choisir...</option>";
-        for (j=0; j<data.results.length; j++){
-            html += "<option value=\""+data.results[j].title+"\" onSelect= faire_alert(\"" + "couc" + "\")>"+data.results[j].title+"</option>";
-        }
-        html += "</select><br>";
-        html +="</form>";
+        if(data.results.length != 0){
+          var j, html;
+          html = "Voici une liste de résultats supplémentaires avec votre recherche :";
+          html += "<form id=\"listes\" name=\"listes\">";
+          html += "<span id=\"numero\"></span> <select name=\"liste\" onChange = chargement_lien(this.value) ><option value=\"\">Choisir...</option>";
+          for (j=0; j<data.results.length; j++){
+              html += "<option value=\""+data.results[j].title+"\" onSelect= faire_alert(\"" + "couc" + "\")>"+data.results[j].title+"</option>";
+          }
+          html += "</select><br>";
+          html +="</form>";
 
-        const lstderoule = document.getElementById('listederoulante');
-        lstderoule.innerHTML = html;
+          const lstderoule = document.getElementById('listederoulante');
+          lstderoule.innerHTML = html;
+        }
 
       //traitement de l'image
           image = premier_film.backdrop_path;
@@ -193,19 +194,20 @@ function chargement_lien(titre) {
           balise_resume.textContent = premier_film.overview;
 
           data.results.shift();
-          var j, html;
-          html = "Voici une liste de résultats avec votre recherche :";
-          html += "<form id=\"listes\" name=\"listes\">";
-          html += "<span id=\"numero\"></span> <select name=\"liste\"><option value=\"\">Choisir ...</option>";
-          for (j=0; j<data.results.length; j++){
-            html += "<option value=\""+data.results[j].title+"\" onClick= chargement_lien(value)>"+data.results[j].title+"</option>";
+          if(data.results.length != 0){
+            var j, html;
+            html = "Voici une liste de résultats avec votre recherche :";
+            html += "<form id=\"listes\" name=\"listes\">";
+            html += "<span id=\"numero\"></span> <select name=\"liste\"><option value=\"\">Choisir ...</option>";
+            for (j=0; j<data.results.length; j++){
+              html += "<option value=\""+data.results[j].title+"\" onClick= chargement_lien(value)>"+data.results[j].title+"</option>";
+            }
+            html += "</select><br>";
+            html +="</form>";
+
+            const lstderoule = document.getElementById('listederoulante');
+            lstderoule.innerHTML = html;
           }
-          html += "</select><br>";
-          html +="</form>";
-
-          const lstderoule = document.getElementById('listederoulante');
-          lstderoule.innerHTML = html;
-
           //traitement de l'image
           image = premier_film.backdrop_path;
           if (image==null){
